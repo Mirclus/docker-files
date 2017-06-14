@@ -9,14 +9,7 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir -p /.cargo/
 COPY cargo_config /.cargo/config
 
-RUN groupadd -g 1000 rust && \
-    useradd -u 1000 -g 1000 -m rust
-
-RUN mkdir /builds && chown rust:rust /builds
-
-USER rust
-
-ENV PATH $PATH:/home/rust/.cargo/bin/
+ENV PATH $PATH:/root/.cargo/bin/
 
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
     rustup default stable && \
